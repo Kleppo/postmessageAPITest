@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        function receiveMessage(event) {
+            console.debug(event.data);
+
+            var newElement = document.createElement("p");
+            newElement.innerHTML = event.data;
+            document.body.appendChild(newElement);
+
+            if(window.opener) {
+                window.opener.postMessage("Message from popup", '*');
+            } else {
+                window.parent.postMessage("Message from popup", '*');
+            }
+        };
+
+        window.addEventListener("message", receiveMessage, false);
+    </script>
+</body>
+</html>

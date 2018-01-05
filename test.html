@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <button onclick="openPopup();">open popup!</button>
+    <button onclick="openZill();">open zill!</button>
+    <button onclick="sendMessage();">send message!</button>
+    <script>
+        var popup = null;
+        var zillPopup = null;
+
+        function openPopup() {
+            popup = window.open('/popup.html');
+        };
+
+        function openZill() {
+            zillPopup = window.open('https://zill-selector.katholiekonderwijs.vlaanderen/#/?waitForState');
+        };
+
+        function sendMessage() {
+            if(popup) {
+                popup.postMessage("Bericht van parent","*");
+            }
+        };
+
+        function receiveMessage(event) {
+            console.debug(event.data);
+
+            var newElement = document.createElement("p");
+            newElement.innerHTML = event.data;
+            document.body.appendChild(newElement);
+        };
+
+        window.addEventListener("message", receiveMessage, false);
+    </script>
+</body>
+</html>

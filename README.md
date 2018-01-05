@@ -5,6 +5,8 @@ In Chrome, everything seems to be OK.
 In Edge the parent does not receive any messages from the Zill popup.
 
 ## Usage
+First, make sure the path of 'popup.html' in the scrip of 'test.html' is correct!
+
 Open the test.html in Edge.
 Click on 'Open popup' and on 'Send message'.
 The message will be shown in the popup, and it will send a message back.
